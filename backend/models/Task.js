@@ -1,13 +1,29 @@
 const mongoose = require("mongoose");
 
-const taskSchema = new mongoose.Schema({
-  Heading: { type: String, required: true },
-  Note: { type: String, required: true },
-  Tag: { type: String, required: true },
-  userId: { type: String, required: true },
-});
+const taskSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    assignedTo: {
+      type: [String],
+    },
+    dueDate: {
+      type: Date,
+    },
+  },
+  {
+    timestamps: true, // Automatically manage `createdAt` and `updatedAt` fields
+  }
+);
 
-const taskModel = mongoose.model("task", taskSchema);
+// Compile model from schema
+const taskModel = mongoose.model("Task", taskSchema);
 
 module.exports = {
   taskModel,

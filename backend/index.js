@@ -4,8 +4,8 @@ require("dotenv").config();
 const { connection } = require("./config/db");
 const { authentication } = require("./middleware/Authentication");
 const PORT = process.env.PORT;
-const { userController } = require("./controllers/user.controller");
-// const {taskController}=require("./Routes/task.routes")
+const userRouter = require("./routes/userRoutes");
+const taskRouter = require("./routes/taskRoutes");
 
 const app = express();
 app.use(express.json());
@@ -15,11 +15,11 @@ app.get("/", (req, res) => {
   res.send("Home page of crud and assgn");
 });
 
-app.use("/user", userController);
+app.use("/user", userRouter);
 
 // app.use(authentication);
 
-// app.use("/notes", taskController);
+app.use("/task", taskRouter);
 
 app.listen(PORT, async () => {
   try {
