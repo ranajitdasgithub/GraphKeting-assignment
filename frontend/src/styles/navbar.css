@@ -1,0 +1,57 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #7eb6ee; /* Light background color */
+    border-bottom: 1px solid #1a6cbd; /* Border for separation */
+  }
+  
+  .nav-left ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px; /* Space between links */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-left li {
+    display: inline;
+  }
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between avatar and details */
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #c82333; /* Darker shade on hover */
+  }
+  
