@@ -11,7 +11,11 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: [, "http://localhost:3000"], // Allow both production and local URLs
+  origin: [
+    process.env.VARCEL_URL,
+    "http://localhost:3001",
+    "http://localhost:3000",
+  ], // Allow both production and local URLs
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 };
