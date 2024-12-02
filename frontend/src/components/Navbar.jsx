@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { LogoutAction } from "../redux/AuthReducer/action";
 import "../styles/navbar.css";
@@ -8,15 +8,14 @@ const Navbar = () => {
   const { isAuth, userName } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const initial = userName ? userName.charAt(0).toUpperCase() : "";
-  console.log("isauth", isAuth, userName);
   useEffect(() => {
-    console.log("usr", !userName);
-    if (!isAuth || !userName) {
+    if (location.pathname === "/dashboard" && (!isAuth || !userName)) {
       navigate("/login");
     }
-  }, [isAuth, userName, navigate]);
+  }, [isAuth, userName, location, navigate]);
 
   const handleLogout = () => {
     dispatch(LogoutAction());

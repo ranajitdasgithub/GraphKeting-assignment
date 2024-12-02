@@ -1,7 +1,7 @@
 import * as types from "./actionType";
 import axios from "axios";
 
-const url = "http://localhost:4000";
+const url = "https://graph-keting-assignment.vercel.app/";
 
 const LoginAction = (payload) => (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST });
