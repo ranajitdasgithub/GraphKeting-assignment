@@ -21,7 +21,7 @@ const reducer = (oldState = initState, action) => {
       };
 
     case types.LOGIN_SUCCESS:
-      sessionStorage.setItem("tokenKey", JSON.stringify(payload.token));
+      sessionStorage.setItem("tokenKey", payload.token);
       return {
         ...oldState,
         isAuth: true,

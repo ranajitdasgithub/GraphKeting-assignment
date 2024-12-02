@@ -17,7 +17,7 @@ const Login = () => {
       dispatch(LoginAction({ email, password })).then((r) => {
         if (r.type === LOGIN_SUCCESS) {
           alert("Login successful");
-          navigate("/");
+          navigate("/dashboard");
         } else if (r.type === LOGIN_FAILED) {
           alert("Login failed. Please check your credentials.");
         } else {
