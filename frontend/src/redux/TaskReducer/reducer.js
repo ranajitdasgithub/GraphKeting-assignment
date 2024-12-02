@@ -17,7 +17,11 @@ const taskReducer = (state = initialState, action) => {
       return { ...state, isLoading: true, isError: false };
 
     case types.CREATE_TASK_SUCCESS:
-      return { ...state, isLoading: false, tasks: [...state.tasks, payload.data] };
+      return {
+        ...state,
+        isLoading: false,
+        tasks: [...state.tasks, payload.data],
+      };
 
     case types.CREATE_TASK_FAILURE:
       return {
