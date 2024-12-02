@@ -9,7 +9,14 @@ const taskRouter = require("./routes/taskRoutes");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: [, "http://localhost:3000"], // Allow both production and local URLs
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Home page of crud and assgn");
