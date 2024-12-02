@@ -26,11 +26,31 @@ const createTask = async (req, res) => {
   }
 };
 
+// Function to calculate priority for each task
+const calculatePriority = (task) => {
+  const daysToDueDate =
+    (new Date(task.dueDate) - new Date()) / (1000 * 60 * 60 * 24);
+  const dueDatePriority =
+    daysToDueDate >= 0 ? Math.max(0, 100 - daysToDueDate) : 0;
+  const assignedPriority =
+    task.assignedTo.length > 1 ? task.assignedTo.length * 10 : 0;
+  const descriptionPenalty = task.description.length > 100 ? -20 : 0;
+
+  const priority = dueDatePriority + assignedPriority + descriptionPenalty;
+  return parseFloat(priority.toFixed(2));
+};
+
 // Get all tasks
 const getTasks = async (req, res) => {
   try {
     const tasks = await taskModel.find();
-    res.status(200).json({ success: true, data: tasks });
+    const tasksWithPriority = tasks
+      .map((task) => ({
+        ...task.toObject(),
+        priority: calculatePriority(task),
+      }))
+      .sort((a, b) => b.priority - a.priority);
+    res.status(200).json({ success: true, data: tasksWithPriority });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -82,9 +102,11 @@ const deleteTask = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Task not found" });
     }
-    res
-      .status(200)
-      .json({ success: true, message: "Task deleted successfully" });
+    res.status(200).json({
+      success: true,
+      message: "Task deleted successfully",
+      id: req.params.id,
+    });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }

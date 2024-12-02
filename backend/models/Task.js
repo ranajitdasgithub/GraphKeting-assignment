@@ -11,7 +11,7 @@ const taskSchema = new mongoose.Schema(
       required: true,
     },
     assignedTo: {
-      type: [String],
+      type: [],
     },
     dueDate: {
       type: Date,
