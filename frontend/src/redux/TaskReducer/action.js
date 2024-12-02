@@ -2,7 +2,7 @@ import axios from "axios";
 import * as types from "./actionType";
 
 // Base API URL
-const API_URL = "https://graph-keting-assignment-backend.vercel.app/";
+const API_URL = "https://graph-keting-assignment-backend.vercel.app";
 
 // Function to get the token from sessionStorage
 const getAuthToken = () => {
