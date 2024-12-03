@@ -4,7 +4,7 @@ require("dotenv").config();
 const { connection } = require("./config/db");
 const { authentication } = require("./middleware/Authentication");
 const PORT = process.env.PORT || 5000;
-const ENV = process.env.NODE_ENV || "development"; 
+const ENV = process.env.NODE_ENV || "development";
 const userRouter = require("./routes/userRoutes");
 const taskRouter = require("./routes/taskRoutes");
 
@@ -16,7 +16,7 @@ const corsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins =
       ENV === "development"
-        ? ["http://localhost:3001"] 
+        ? ["http://localhost:3001"]
         : [process.env.VERCEL_URL];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -28,8 +28,8 @@ const corsOptions = {
   credentials: true,
 };
 
-app.use(cors(corsOptions));
-
+// app.use(cors(corsOptions));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Home page of CRUD and assignment");
